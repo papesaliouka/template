@@ -20,9 +20,10 @@ function removeLoadingSpinner(){
 // Get Quote from API
 async function getQuote (){ 
     showLoadingSpinner();
+    const proxyUrl = 'https://radiant-stream-83815.herokuapp.com/'
     const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';  
     try{
-        const response = await fetch(apiUrl);
+        const response = await fetch(proxyUrl + apiUrl);
         const data = await response.json();
         //if quote.author is unknow
         quoteAuthor===''? quoteAuthor.innerText="Unknown": quoteAuthor.innerText = data.quoteAuthor;
@@ -41,7 +42,6 @@ function tweetQuote(){
     const author = quoteAuthor.innerText;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${quote} - ${author}`;
     window.open(twitterUrl, '_blank');
-
 }
 
 //evenlistener
